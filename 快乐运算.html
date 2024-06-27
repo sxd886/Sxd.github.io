@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快乐运算</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.3/css/bootstrap.min.css" rel="stylesheet" >
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
+    <style>
+        
+
+
+
+        .header {
+        background-color: rgb(48, 49, 51) !important;
+        color: white;
+        padding: 3rem 8rem!important;
+        margin: 0px !important;
+        }
+        .header h1 {
+        font-size: 24px;
+        }
+        .header p {
+        font-size: 21px !important;
+        }
+        .header p strong {
+        font-size: 14px;
+        }
+        .header p small {
+        font-size: 65%;
+        }
+        .header button {
+        width: 83px;
+        font-size: 12px;
+        padding: 2px 0;
+        margin: 0;
+        }
+        .header img{
+        height: 200px;
+        }
+        .header .thumbnail {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        width: 159px;
+        padding: 8px;
+        }
+        .navbar-brand{margin-left: 100px;}
+
+        .btn-outline-success{width: 300px;}
+
+        .content {
+        /* margin: 0; */
+        /* padding 一个值代表上下左右 */
+        /* padding 两个值代表上下，左右 */
+        /* padding 四个值代表上、右、下、左 */
+        padding: 10px 100px; 
+      }
+      .content .my-btn {
+        width: 100%;
+      }
+      .content .my-btn:hover {
+        background-color: orange;
+      }
+      .content .my-btn button{
+        width: 100%;
+      }
+      .content .my-btn ul{
+        width: 100%;
+        opacity: 0.8;
+      }
+      .content .row>div {
+        padding: 10px;
+      }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">快乐运算:)     </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        </div>
+
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+              <form class="d-flex" role="search">
+                <input class="form-control me-2" type="email" placeholder="Email" aria-label="Email">
+                <input class="form-control me-2" type="Password" placeholder="Password" aria-label="Password">
+                <button class="btn btn-outline-success" type="submit" style="margin-right: 10px;" >Sign In</button>
+                <button class="btn btn-outline-success" type="submit" >Sign Up</button>
+              </form>
+            </div>
+          </nav>
+      </nav>
+
+      
+
+        <div class="p-5 mb-4 bg-light header">
+            <div class="container-fluid py-5 row">
+              <div class="left col-md-10">
+                <h1 class="display-5 fw-bold">欢迎来到快乐运算~</h1>
+                <p class="">在这里你将攻克各个难题，和不同的人面对难易相近的难题。希望你能披荆斩棘，走向人生巅峰。</p>
+                <p class="fs-4" style="margin: 0"><strong>你可以：</strong> <small>独自通关</small></p>
+                <p class="fs-4" style="margin-left: 60px;"><small>线上对战</small></p>
+                <button class="btn btn-primary btn-lg" type="button">详细信息 >></button>
+              </div>
+              <div class="right col-md-2" >
+                <div class="thumbnail">
+                  <img src="https://yanyige.github.io/CourseWork/Week6/images/logo.jpg" class="thumbnail">
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="content" style="height: 350px; background-color: rgb(0, 0, 0); color:white">
+            <div class="row g-2">
+              <div class="col-md-5" style="height: 350px;">
+                <span>小试牛刀</span>
+                <!-- Default dropup button -->
+                <div class="btn-group dropup my-btn" style="display: block;">
+                  <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    选择难度
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">青铜</a></li>
+                    <li><a class="dropdown-item" href="#">白银</a></li>
+                    <li><a class="dropdown-item" href="#">黄金</a></li>
+                    <li><a class="dropdown-item" href="#">铂金</a></li>
+                    <li><a class="dropdown-item" href="#">大师</a></li>
+                    <li><a class="dropdown-item" href="#">王者</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-7" style="height: 350px;">榜上有名
+                <table id="ans-table" class="table" style="width: calc(100% - 110px)">
+                  <thead>
+                                <tr style="color: antiquewhite;">
+                                    <th>#</th>
+                                    <th>Username</th>
+                                    <th>Score</th>
+                                    <th>Rank</th>
+                                </tr>
+                            </thead>
+                            <tr style="color: antiquewhite;">
+                                <th scope="row">1</th>
+                                <td>索萧东</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr style="color: antiquewhite;">
+                                <th scope="row">2</th>
+                                <td>王靖</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr style="color: antiquewhite;">
+                                <th scope="row">3</th>
+                                <td>王泽远</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr style="color: antiquewhite;">
+                                <th scope="row">4</th>
+                                <td>廖博豪</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr style="color: antiquewhite;">
+                                <th scope="row">5</th>
+                                <td>戚超博</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+            </table>
+              </div>
+            </div>
+          </div>
+
+</body>
+</html>
