@@ -1,5 +1,1 @@
-上传：
-git init
-git add (文件名称加后缀)
-git commit -m (放进去的文件名)
-git push -u origin main
+查看文件：需要在网址后面加上所需文件名
