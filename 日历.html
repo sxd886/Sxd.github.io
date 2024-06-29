@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人日历</title>
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(6, 30px);
+            gap: 0;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .gezi {
+            width: 30px;
+            height: 30px;
+            background-color: pink; /* 更改格子的背景颜色 */
+            border: 1px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(7, 30px); /* 增加了一列，以便留出空间 */
+            gap: 0;
+            justify-content: flex-start; /* 左对齐 */
+            margin-top: 20px;
+            text-align: left; /* 左对齐日历中的内容 */
+        }
+    </style>
+</head>
+<body>
+    <label for="month">选择月份：</label>
+    <select id="month">
+        <option value="">--作出选择--</option>
+        <option value="Jan">一月</option>
+        <option value="Feb">二月</option>
+        <option value="Mar">三月</option>
+        <option value="Apr">四月</option>
+        <option value="May">五月</option>
+        <option value="Jun">六月</option>
+        <option value="Jul">七月</option>
+        <option value="Aug">八月</option>
+        <option value="Sep">九月</option>
+        <option value="Oct">十月</option>
+        <option value="Nov">十一月</option>
+        <option value="Dec">十二月</option>
+    </select>
+    <div class="grid-container" id="days"></div>
+    <script>
+        document.querySelector('#month').addEventListener('change', getMonth);
+
+        const day31 = ['Jan', 'Mar', 'May', 'Jul', 'Aug', 'Oct', 'Dec'];
+        const day30 = ['Apr', 'Jun', 'Sep', 'Nov'];
+        const day28 = ['Feb'];
+
+        function getMonth() {
+            const month = document.querySelector('#month').value;
+            if (day31.includes(month)) {
+                renderBlock(31);
+            } else if (day30.includes(month)) {
+                renderBlock(30);
+            } else if (day28.includes(month)) {
+                renderBlock(28);
+            } else {
+                document.querySelector('#days').innerHTML = '';
+            }
+        }
+
+        function renderBlock(num) {
+            const blocks = document.querySelector('#days');
+            blocks.innerHTML = '';
+            for (let i = 0; i < num; i++) {
+                const block = document.createElement('div');
+                block.className = 'gezi';
+                block.textContent = i + 1;
+                blocks.appendChild(block);
+            }
+        }
+    </script>
+</body>
+</html>
