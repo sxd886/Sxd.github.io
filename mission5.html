@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for循环</title>
+    <style type="text/css">
+        .content p {
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content"></div>
+    <script type="text/javascript">
+        var count = 10;
+        async function foo() {
+            var output = document.querySelector('.content');
+            for (var i = count; i > 0; i--){
+                output.innerHTML = ''; // 清空content的内容
+                var para = document.createElement('p');
+                para.textContent = '倒计时:' + i;
+                output.appendChild(para);
+                await new Promise(resolve => setTimeout(resolve, 1000));
+            }
+
+            output.innerHTML = ''; // 清空content的内容
+            var para = document.createElement('p');
+            para.textContent = '预备！跑！！';
+            output.appendChild(para);
+        }
+        foo();
+    </script>
+</body>
+</html>
