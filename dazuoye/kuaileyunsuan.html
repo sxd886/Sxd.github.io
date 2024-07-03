@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>快乐运算</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.3/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
+  <style type="text/css">
+    .header {
+      background-color: rgb(48, 49, 51) !important;
+      color: white;
+      padding: 3rem 8rem !important;
+      margin: 0 ! important;
+    }
+
+    .header h1 {
+      font-size: 24px;
+    }
+
+    .header p {
+      font-size: 21px !important;
+    }
+
+    .header p strong {
+      font-size: 14px;
+    }
+
+    .header p small {
+      font-size: 65%;
+    }
+
+    .header button {
+      width: 83px;
+      font-size: 12px;
+      padding: 2px 0;
+      margin: 0;
+    }
+
+    .header img {
+      height: 200px;
+    }
+
+    .header .thumbnail {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      width: 159px;
+      padding: 4px;
+    }
+
+    .content {
+      padding: 10px 100px;
+      width: 100%;
+    }
+
+    .content .my-btn {
+      width: 100%;
+      border-radius: 0%;
+    }
+
+    /* .content .my-btn:hover {
+        background-color: orange; 
+    } */
+
+    .content .my-btn button {
+      width: 100%;
+    }
+
+    .content .my-btn ul {
+      width: 100%;
+      opacity: 0.8;
+    }
+
+    .content .row>div {
+      padding: 10px;
+    }
+
+    .navber {
+      min-height: 30px;
+      line-height: 30px;
+      text-align: center;
+      height: 20px;
+      width: 100%;
+    }
+
+    .row {
+      margin-right: 50px;
+      margin-left:  60px;
+    }
+
+    .btn {
+      white-space: nowrap;
+      margin-left: 10px;
+    }
+
+    .form-control {
+      text-align: center;
+    }
+    .info{
+      padding-top: 10px;
+      margin-left: 50px;
+    }
+    span{
+      margin-left: 20px;
+    } 
+    /* .name,.score,.rank,.gscore{
+      text-align: left;
+    } */
+    h1{
+      font-size: 36px;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      font-family: inherit;
+      font-weight: 500;
+      line-height: 1.1;
+      color: inherit;
+    } 
+    .container-fluid{
+      position: fixed;
+      top: 0;
+      background-color: white;
+    }
+    .col-md-6{
+      z-index: 999;
+      position: fixed;
+      bottom: 0;
+
+    } 
+    .ans {
+      width: 50px;
+      height: 18px;
+    }
+    #quiz,#post {
+      transition: 2s;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand">快乐运算:）</a>
+      <form class="d-flex login_form" role="search">
+        <input id="username"class="form-control me-2" type="search" placeholder="用户名" >
+        <input id="password" class="form-control me-2" type="password" placeholder="密码">
+        <button type="button" id="sign_in" class="btn btn-success text-nowrap" class=".login_form">登录</button>
+        <button type="button" id="sign_up" class="btn btn-danger text-nowrap" class=".login_form">注册</button>
+      </form>
+      <div class="logged-user"></div>
+      <button class="logout" style="display: none;">log out</output></button>
+    </div> 
+  </nav> 
+  <div class="p-5 mb-4 bg-light header">
+    <div class="container py-5 row">
+      <div class="left col-md-10">
+        <h1 class="display-5 fw-bold">欢迎来到快乐运算~</h1>
+        <p class="">在这里你将攻克各个难题，和不同的人面对难易相近的难题。希望你能披荆斩棘，走向人生巅峰。</p>
+        <p class="fs-4" style="margin: 0"><strong>你可以：</strong> <small>独自通关</small></p>
+        <p class="fs-4" style="margin-left: 60px;"><small>线上对战</small></p>
+        <button class="btn btn-primary btn-lg" type="button"><a href="file:///C:/Users/PC/Desktop/xiaoxueqi.homework/mission6.html" style="color: white;">计 算 器 >></a></button>
+      </div>
+      <div class="right col-md-2">
+        <div class="thumbnail">
+          <img src="https://yanyige.github.io/CourseWork/Week6/images/logo.jpg" class="thumbnail">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content" style="height: 550px; background-color: black; color:white;padding-top: 30px;">
+    <div class="row g-2">
+      <div id="quiz" class="col-md-5" style="height: 350px;background-color: rgb(79, 77, 77);margin-bottom: 20px;padding-top: 20px;  display: none;">
+        <span>请回答下列问题</span>
+        <table class="table table-dark table-hover" style="margin: 20px auto; width: 90%;">
+          <thead>
+            <tr>
+              <th scope="col" class="col-md-2">序号</th>
+              <th scope="col" class="col-md-9">题目</th>
+              <th scope="col" class="col-md-1">答案</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>1+2</td>
+              <td><input class="ans form-control"></td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>3+4</td>
+              <td><input class="ans form-control"></td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>5+6</td>
+              <td><input class="ans form-control"></td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>1+2</td>
+              <td><input class="ans form-control"></td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>3+4</td>
+              <td><input class="ans form-control"></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <button class="submit" style="margin-right: 29px; float: right;">提交</button>
+      </div>
+      <div id="post" class="col-md-5" style="height: 350px;background-color: rgb(79, 77, 77);margin-bottom: 20px;padding-top: 20px;">
+        <span>小试牛刀</span>
+        <div class="btn-group dropup my-btn">
+          <button type="button" class="btn btn-warning dropdown-toggle" style="border-radius: 0%;margin: 10px;margin-left: 20px;color: white;"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            选择难度
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">白银</a></li>
+            <li><a class="dropdown-item" href="#">青铜</a></li>
+            <li><a class="dropdown-item" href="#">王者</a></li>
+          </ul>
+        </div>
+        <div class="info pd20">
+					<img src="https://yanyige.github.io/CourseWork/Week6/images/logo.jpg" class="thumbnail" width="100em" height="100em" style="float:left">
+					<p class="name">姓名：尚未登陆</p>
+					<p class="score">分数：尚未登陆</p>
+					<p class="rank">排名：尚未登陆</p>
+					<p class="gscore">测试得分：<span class="ggscore"></span></p>
+				</div>
+        <div class="btn-group dropup my-btn">
+          <button type="button" class="btn btn-warning" style="border-radius: 0%;margin: 50px;margin-left: 30px;color: white;margin-top: 20px;"
+          data-bs-toggle="dropdown" aria-expanded="false">习题册
+          </button>
+        </div>
+      </div>
+      <div class="col-md-7" style="height: 350px;background-color: rgb(87, 87, 87);padding-top: 20px;">榜上有名
+        <table id="ans-table" class="table" style="width: calc(100% - 110px);color: white;text-align: center;">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Username</th>
+              <th>Score</th>
+              <th>Rank</th>
+            </tr>
+          </thead>
+          <tr>
+            <th scope="row">1</th>
+            <td>索萧东</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>王靖</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>王泽远</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>廖博豪</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <th scope="row">5</th>
+            <td>戚超博</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <h1 style="display: block">To be continued...</h1>
+  </div>
+  </div>
+  <h1 style="display: block">To be continued...</h1>
+  </div>
+  </div>
+  <nav class="navbar fixed-bottom bg-body-tertiary">
+      <div class="col-md-6 btn-success" style="min-height: 30px; line-height: 30px; text-align: center;background-color: green;">个人匹配</div>
+      <div class="col-md-6 btn-warning" style="min-height: 30px; line-height: 30px; text-align: center;background-color: orange; right: 0;">多人对战</div> 
+    </div>
+  </nav>
+</body>
+<script type="text/javascript" src="calc.js"></script>
+<script type="text/javascript" src="login.js"></script>
+<script type="text/javascript">
+  //判断用户是否登录
+  var Username = localStorage.getItem("username");
+  //如果已经登录
+  if (Username != null && Username.length > 0) {
+    //获得登录的按钮们
+    var btns = document.querySelector(".login_form");
+    for (var i = 0; i < btns.length; i ++) {
+      btns[i].style.display = 'none';
+    }
+    document.querySelector('.logout').style.display= 'block';
+    //显示当前用户的名字，和退出按钮
+    document.querySelector(".logged-user").innerHTML = Username;
+  }
+  //退出功能
+  var btn = document.querySelector('.logout');
+  btn.addEventListener('click',logout);
+
+  //退出功能
+  function logout() {
+    localStorage.removeItem('username');
+    //刷新页面
+    location.reload();
+  }
+
+</script>
+</html>

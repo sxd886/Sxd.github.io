@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>计算器</title>
+  <link rel="stylesheet" type="text/css" href="css.css">
+</head>
+<body>
+<h1 style="text-align: center;">计算器（小数点保留两位）</h1>
+<table width="600" height="600" align="center">
+  <tr>
+    <td colspan="5" align="right"><p id="int">0</p></td>
+  </tr>
+  <tr align="center" valign="middle">
+    <td><button onclick="buttonClick('NEW')" value="NEW">NE</button></td>
+    <td><button onclick="buttonClick('CE')" value="CE">CE</button></td>
+    <td><button onclick="buttonClick('C')" value="C">C</button></td>
+    <td><button onclick="buttonClick('%')" value="%">%</button></td>
+    <td><button onclick="buttonClick('/')" value="/">/</button></td>
+  </tr>
+  <tr align="center" valign="middle">
+    <td><button onclick="buttonClick('**3')" value="X³">X³</button></td>
+    <td><button onclick="buttonClick('7')" value="7">7</button></td>
+    <td><button onclick="buttonClick('8')" value="8">8</button></td>
+    <td><button onclick="buttonClick('9')" value="9">9</button></td>
+    <td><button onclick="buttonClick('*')" value="*">*</button></td>
+  </tr>
+  <tr align="center" valign="middle">
+    <td><button onclick="buttonClick('**2')" value="X²">X²</button></td>
+    <td><button onclick="buttonClick('4')" value="4">4</button></td>
+    <td><button onclick="buttonClick('5')" value="5">5</button></td>
+    <td><button onclick="buttonClick('6')" value="6">6</button></td>
+    <td><button onclick="buttonClick('-')" value="-">-</button></td>
+  </tr>
+  <tr align="center" valign="middle">
+    <td><button onclick="buttonClick('±')" value="±">±</button></td>
+    <td><button onclick="buttonClick('1')" value="1">1</button></td>
+    <td><button onclick="buttonClick('2')" value="2">2</button></td>
+    <td><button onclick="buttonClick('3')" value="3">3</button></td>
+    <td><button onclick="buttonClick('+')" value="+">+</button></td>
+  </tr>
+  <tr align="center" valign="middle">
+    <td><button onclick="buttonClick('(')" value="(">(</button></td>
+    <td><button onclick="buttonClick(')')" value=")">)</button></td>
+    <td><button onclick="buttonClick('0')" value="0">0</button></td>
+    <td><button onclick="buttonClick('.')" value=".">.</button></td>
+    <td><button onclick="calculate()" value="=">=</button></td>
+  </tr>
+</table>
+<script>
+var isResultShown = false; // 标记是否显示了计算结果
+var originalExpression = ''; // 保存初始表达式
+var lastClickedValue = ''; // 保存最后点击的按钮值
+
+function buttonClick(value) {
+  lastClickedValue = value; // 更新最后点击的按钮值
+  if (value === 'CE') {
+    clearDisplay();
+  } else if (value === 'C') {
+    clearAll();
+  } else {
+    addToDisplay(value);
+  }
+}
+
+function addToDisplay(value) {
+  var display = document.getElementById('int'); // 获取显示结果的元素
+  var currentValue = display.textContent.trim(); // 获取当前显示的内容并去除两侧空格
+  
+  // 如果结果已经显示，并且当前输入不是数字，则清空显示
+  if (isResultShown && !isNaN(value)) {
+    display.textContent = '';
+    isResultShown = false;
+  } else if (isResultShown && isNaN(value)) {
+    isResultShown = false;
+  }
+
+  var isSymbol = ['+', '-', '*', '/',"%"].includes(value); // 检查输入是否为运算符
+  var lastChar = currentValue[currentValue.length - 1]; // 获取当前显示内容的最后一个字符
+  var lastIsSymbol = ['+', '-', '*', '/','%'].includes(lastChar); // 检查最后一个字符是否为运算符
+
+  // 如果输入为运算符且最后一个字符也是运算符，则不做处理直接返回
+  if (isSymbol && lastIsSymbol) {
+    return;
+  }
+  
+  // 如果输入为小数点且当前显示内容已经包含小数点，则不做处理直接返回
+  if (value === '.' && currentValue.includes('.')) {
+    return;
+  }
+
+  // 处理特殊命令'NEW'，生成随机数表达式并显示
+  if (value === 'NEW') {
+    var symbols = ['+', '-', '*', '/'];
+    var maxNumber = 100; // 最大的随机数范围
+    var expression = '';
+
+    for (var i = 0; i < 3; i++) {
+      if (i > 0) {
+        expression += symbols[Math.floor(Math.random() * symbols.length)];
+      }
+      expression += Math.floor(Math.random() * maxNumber);
+    }
+
+    display.textContent = expression;
+    originalExpression = expression; // 更新原始表达式
+  } else if (currentValue === '0' && value !== '.' && value !== '(' && !isSymbol) {
+    // 如果当前显示为'0'且输入不是小数点、左括号或运算符，则替换显示内容为输入值
+    display.textContent = value;
+  } else {
+    // 否则根据是否显示结果或者输入是否为数字进行追加或替换显示内容
+    if (!isResultShown || isNaN(value)) {
+      display.textContent += value;
+    } else {
+      display.textContent = value; // 替换内容改为追加
+      isResultShown = false;
+    }
+  }
+}
+
+// 清空显示内容
+function clearDisplay() {
+  document.getElementById('int').textContent = '0';
+}
+
+// 删除最后一个字符或清空显示内容
+function clearAll() {
+  var display = document.getElementById('int');
+  var currentValue = display.textContent.trim();
+
+  if (currentValue.length > 0) {
+    display.textContent = currentValue.slice(0, -1);
+  }
+
+  if (display.textContent === '') {
+    display.textContent = '0';
+  }
+  isResultShown = false;
+}
+
+// 更改当前显示内容的符号
+function changeSign() {
+  var display = document.getElementById('int');
+  var currentValue = parseFloat(display.textContent);
+  if (currentValue !== 0) {
+    display.textContent = -currentValue;
+  }
+}
+
+function calculate() {
+  var display = document.getElementById('int');
+  var expression = display.textContent;
+
+  // 将百分号替换为乘以0.01以进行计算
+  expression = expression.replace(/%/g, '*0.01');
+
+  try {
+    // 计算表达式
+    var result = eval(expression);
+
+    // 如果结果已经显示，处理这种情况
+    if (isResultShown && !isNaN(lastClickedValue)) {
+      // 如果最后点击的值是数字，则使用它，否则默认为0
+      var lastValue = parseFloat(lastClickedValue);
+      if (!isNaN(lastValue)) {
+        result = parseFloat(result) + lastValue;
+      }
+    }
+
+    // 显示结果
+    display.textContent = result;
+    previousResult = result;
+    isResultShown = true;
+  } catch (error) {
+    // 处理计算中的任何错误
+    display.textContent = 'Error';
+  }
+}
+
+
+
+
+function calculate() {
+  var display = document.getElementById('int');
+  var expression = display.textContent;
+
+  // 将百分号替换为乘以0.01以进行计算
+  expression = expression.replace(/%/g, '*0.01');
+
+  try {
+    // 计算表达式
+    var result = eval(expression);
+
+    // 如果结果已经显示，处理这种情况
+    if (isResultShown && !isNaN(lastClickedValue)) {
+      // 如果最后点击的值是数字，则使用它，否则默认为0
+      var lastValue = parseFloat(lastClickedValue);
+      if (!isNaN(lastValue)) {
+        result = parseFloat(result) + lastValue;
+      }
+    }
+
+    // 保留结果小数点后两位
+    result = parseFloat(result).toFixed(2);
+
+    // 显示结果
+    display.textContent = result;
+    previousResult = result;
+    isResultShown = true;
+  } catch (error) {
+    // 处理计算中的任何错误
+    display.textContent = 'Error';
+  }
+}
+</script>
+</body>
+</html>
